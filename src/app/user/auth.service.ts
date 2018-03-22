@@ -11,8 +11,8 @@ import {CognitoUser, CognitoUserAttribute,
   CognitoUserPool, AuthenticationDetails, CognitoUserSession} from 'amazon-cognito-identity-js';
 
 const POOL_DATA = {
-  UserPoolId: 'eu-west-2_xUe0IJMOO',
-  ClientId: '68kk5qdhv9rnqbpfs5rjnfneeg'
+  UserPoolId: 'us-east-2_ybR98Ta2E',
+  ClientId: '24efshm1f0nurtnqt29cfeunii'
 };
 const userPool = new CognitoUserPool(POOL_DATA);
 
@@ -59,6 +59,7 @@ export class AuthService {
       if (err) {
         this.authDidFail.next(true);
         this.authIsLoading.next(false);
+        console.log(err);
         return;
       }
       this.authDidFail.next(false);

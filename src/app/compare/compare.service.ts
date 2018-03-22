@@ -19,15 +19,17 @@ export class CompareService {
   }
 
   onStoreData(data: CompareData) {
+   
     this.dataLoadFailed.next(false);
     this.dataIsLoading.next(true);
     this.dataEdited.next(false);
     this.userData = data;
     this.authService.getAuthenticatedUser().getSession((err, session) => {
       if (err) {
+        
         return;
       }
-      this.http.post('https://4wekb9ub7f.execute-api.eu-west-2.amazonaws.com/dev/compare-yourself', data, {
+      this.http.post(' https://204h6ejcj7.execute-api.us-east-2.amazonaws.com/dev/compare-youself', data, {
         headers: new Headers({'Authorization': session.getIdToken().getJwtToken()})
       })
         .subscribe(
@@ -37,6 +39,7 @@ export class CompareService {
             this.dataEdited.next(true);
           },
           (error) => {
+            console.log(error);
             this.dataIsLoading.next(false);
             this.dataLoadFailed.next(true);
             this.dataEdited.next(false);
@@ -54,9 +57,9 @@ export class CompareService {
       const queryParam = '?accessToken=' + session.getAccessToken().getJwtToken();
       let urlParam = 'all';
       if (!all) {
-        urlParam = 'single';
+        urlParam = 'one';
       }
-      this.http.get('https://4wekb9ub7f.execute-api.eu-west-2.amazonaws.com/dev/compare-yourself/' + urlParam + queryParam, {
+      this.http.get('https://204h6ejcj7.execute-api.us-east-2.amazonaws.com/dev/compare-youself/' + urlParam + queryParam, {
         headers: new Headers({'Authorization': session.getIdToken().getJwtToken()})
       })
         .map(
@@ -89,7 +92,7 @@ export class CompareService {
       if (err) {
         return;
       }
-      this.http.delete('https://4wekb9ub7f.execute-api.eu-west-2.amazonaws.com/dev/compare-yourself?accessToken=XXX', {
+      this.http.delete('https://204h6ejcj7.execute-api.us-east-2.amazonaws.com/dev/compare-youself?accessToken=XXX', {
         headers: new Headers({'Authorization': session.getIdToken().getJwtToken()})
       })
         .subscribe(
