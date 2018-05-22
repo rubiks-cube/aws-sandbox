@@ -2,7 +2,7 @@
 
 ## AWS Services used:  
 -API Gateway  
--Lamda  
+-Lambda  (Implemented in Node.js)  
 -IAM  
 -DynamoDB  
 -Cognito  
